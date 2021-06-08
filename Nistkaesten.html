@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+    <title>Nistkastenverzeichnis</title>
+</head>
+<body>
+    <style>
+        #overviewMap {
+            height: 800px;            
+        }
+    </style>
+    
+    <div id="overviewMap"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <script type='text/javascript'>
+        
+        var repository = {"repos":[
+        {"marker":"0","lat":49.569562, "lng":8.260696,"type":"Sonstige","img":""},
+{"marker":"0","lat":49.568033, "lng":8.261424,"type":"Sonstige","img":""},
+{"marker":"0","lat":49.565733, "lng":8.262234,"type":"Sonstige","img":""},
+
+{"marker":"neu","lat":49.563295, "lng":8.273049,"type":"Sonstige","img":""},
+{"marker":"neu","lat":49.563261, "lng":8.272907,"type":"Sonstige","img":""},
+{"marker":"neu","lat":49.563201, "lng":8.272328,"type":"Sonstige","img":""},
+{"marker":"neu","lat":49.563172, "lng":8.27149,"type":"Sonstige","img":""},
+
+{"marker":"1","lat":49.563057, "lng":8.274448,"type":"Sonstige","img":""},
+
+
+
+{"marker":"4a","lat":49.563085, "lng":8.2751,"type":"Sonstige","img":""},
+
+{"marker":"5a","lat":49.562998, "lng":8.275364,"type":"Sonstige","img":""},
+{"marker":"6","lat":49.563026, "lng":8.275635,"type":"Sonstige","img":""},
+{"marker":"7","lat":49.563028, "lng":8.275701,"type":"Sonstige","img":""},
+{"marker":"8","lat":49.562991, "lng":8.275758,"type":"Sonstige","img":""},
+{"marker":"9","lat":49.563044, "lng":8.275881,"type":"Sonstige","img":""},
+
+{"marker":"10a","lat":49.563031, "lng":8.276112,"type":"Sonstige","img":""},
+
+
+{"marker":"12","lat":49.563097, "lng":8.276494,"type":"Sonstige","img":""},
+{"marker":"12a","lat":49.563129, "lng":8.276421,"type":"Sonstige","img":""},
+
+{"marker":"13","lat":49.563084, "lng":8.276544,"type":"Sonstige","img":""},
+{"marker":"13a","lat":49.563079, "lng":8.276611,"type":"Sonstige","img":""},
+{"marker":"13b","lat":49.563041, "lng":8.276672,"type":"Sonstige","img":""},
+{"marker":"14","lat":49.562919, "lng":8.276892,"type":"Sonstige","img":""},
+{"marker":"14a","lat":49.562852, "lng":8.276868,"type":"Sonstige","img":""},
+{"marker":"15","lat":49.562797, "lng":8.27674,"type":"Sonstige","img":""},
+
+{"marker":" ","lat":49.562751, "lng":8.276973,"type":"Sonstige","img":""},
+
+{"marker":"","lat":49.562666, "lng":8.276976,"type":"Sonstige","img":""},
+{"marker":"17","lat":49.562543, "lng":8.276905,"type":"Sonstige","img":""},
+
+
+{"marker":"","lat":49.562665, "lng":8.276834,"type":"Sonstige","img":""},
+
+{"marker":"21","lat":49.562094, "lng":8.276922,"type":"Sonstige","img":""},
+
+{"marker":"23","lat":49.561668, "lng":8.277149,"type":"Sonstige","img":""},
+{"marker":"24","lat":49.561846, "lng":8.276593,"type":"Sonstige","img":""},
+{"marker":"25","lat":49.562347, "lng":8.276702,"type":"Sonstige","img":""},
+{"marker":"26","lat":49.562288, "lng":8.27656,"type":"Sonstige","img":""},
+
+{"marker":"28","lat":49.561611, "lng":8.276996,"type":"Sonstige","img":""},
+
+
+
+{"marker":"WH 1","lat":49.578767, "lng":8.230216,"type":"Wiedehopf","img":"https://stobirdhouse01.blob.core.windows.net/images/WH/WH1.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"WH 2","lat":49.572234, "lng":8.236285,"type":"Wiedehopf","img":"https://stobirdhouse01.blob.core.windows.net/images/WH/WH2.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"WH 3","lat":49.571955, "lng":8.236484,"type":"Wiedehopf","img":"https://stobirdhouse01.blob.core.windows.net/images/WH/WH3.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"WH 4","lat":49.562463, "lng":8.276546,"type":"Wiedehopf","img":"https://stobirdhouse01.blob.core.windows.net/images/WH/WH4.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"WH 5","lat":49.558489, "lng":8.274042,"type":"Wiedehopf","img":"https://stobirdhouse01.blob.core.windows.net/images/WH/WH5.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"WH 6","lat":49.562458, "lng":8.232344,"type":"Wiedehopf","img":"https://stobirdhouse01.blob.core.windows.net/images/WH/WH6.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"WH 7","lat":49.567518, "lng":8.242191,"type":"Wiedehopf","img":"https://stobirdhouse01.blob.core.windows.net/images/WH/WH7.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"WH 8","lat":49.57215, "lng":8.236185,"type":"Wiedehopf","img":"https://stobirdhouse01.blob.core.windows.net/images/WH/WH8.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"WH 9","lat":49.561485, "lng":8.233618,"type":"Wiedehopf","img":"https://stobirdhouse01.blob.core.windows.net/images/WH/WH9.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+
+
+
+{"marker":"30","lat":49.57434, "lng":8.259408,"type":"Steinkautz","img":""},
+{"marker":"31","lat":49.582331, "lng":8.252937,"type":"Steinkautz","img":""},
+{"marker":"32","lat":49.581922, "lng":8.250923,"type":"Steinkautz","img":""},
+{"marker":"33","lat":49.582994, "lng":8.247089,"type":"Steinkautz","img":""},
+{"marker":"34","lat":49.581856, "lng":8.238169,"type":"Steinkautz","img":""},
+{"marker":"35","lat":49.578978, "lng":8.2618,"type":"Steinkautz","img":""},
+{"marker":"36","lat":49.581871, "lng":8.226867,"type":"Steinkautz","img":""},
+{"marker":"37","lat":49.579051, "lng":8.231462,"type":"Steinkautz","img":""},
+{"marker":"38","lat":49.579278, "lng":8.233202,"type":"Steinkautz","img":""},
+{"marker":"39","lat":49.577217, "lng":8.231712,"type":"Steinkautz","img":""},
+{"marker":"40","lat":49.570018, "lng":49.570018,"type":"Steinkautz","img":""},
+
+{"marker":"1","lat":49.564936, "lng":8.24348,"type":"Steinkautz","img":""},
+{"marker":"2","lat":49.574712, "lng":8.232347,"type":"Steinkautz","img":""},
+{"marker":"3","lat":49.573726, "lng":8.232888,"type":"Steinkautz","img":""},
+
+
+
+
+{"marker":"0","lat":49.5654497, "lng":8.24455513,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2123.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56538269, "lng":8.24445245,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2124.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56531375, "lng":8.24413386,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2125.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 22a","lat":49.56523492, "lng":8.24397494,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2126.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 6","lat":49.56525197, "lng":8.24394401,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2127.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 3","lat":49.56547338, "lng":8.24392146,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2128.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56552694, "lng":8.24397192,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2129.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56549916, "lng":8.2435856,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2130.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 1","lat":49.56543533, "lng":8.24361527,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2131.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56544832, "lng":8.24343648,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2132.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56545142, "lng":8.24345534,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2133.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56531203, "lng":8.24355257,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2134.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 2","lat":49.56539027, "lng":8.24367973,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2135.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56526304, "lng":8.24370412,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2136.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 16","lat":49.56520076, "lng":8.24358241,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2137.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56509934, "lng":8.24384435,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2138.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 23","lat":49.56492164, "lng":8.24384074,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2139.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56481305, "lng":8.24373521,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2140.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56502436, "lng":8.24333464,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2141.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 25","lat":49.56460514, "lng":8.24321067,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2142.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56469734, "lng":8.24325233,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2143.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56453859, "lng":8.24312216,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2144.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56435255, "lng":8.24333095,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2145.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56424987, "lng":8.24337664,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2146.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56410219, "lng":8.24317706,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2147.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56420943, "lng":8.24348627,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2148.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56424233, "lng":8.24364645,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2149.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56422293, "lng":8.24363178,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2150.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 21","lat":49.56459462, "lng":8.24398684,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2151.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.5648325, "lng":8.24397712,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2152.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 28","lat":49.56483879, "lng":8.24468589,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2153.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56485467, "lng":8.24457743,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2154.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.56487986, "lng":8.24440308,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2155.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 26","lat":49.56489428, "lng":8.24432388,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2156.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 24","lat":49.56501066, "lng":8.24406253,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2157.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"Nr 24","lat":49.56519049, "lng":8.24405834,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Schlosspark/IMG_2158.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+
+
+
+{"marker":"0","lat":49.57130245, "lng":8.23364902,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Landgraben/IMG_40.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.57104399, "lng":8.23243649,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Landgraben/IMG_41.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.57092644, "lng":8.23238142,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Landgraben/IMG_42.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.5708401, "lng":8.23201421,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Landgraben/IMG_43.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.57078348, "lng":8.23113277,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Landgraben/IMG_44.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.57050085, "lng":8.23002083,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Landgraben/IMG_45.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+{"marker":"0","lat":49.57036917, "lng":8.22945413,"type":"Sonstige","img":"https://stobirdhouse01.blob.core.windows.net/images/Landgraben/IMG_46 u 46a.JPG?sp=rl&st=2021-06-07T19:36:00Z&se=2023-12-31T22:00:00Z&sv=2020-02-10&sr=c&sig=Uua7WlWJ2TLRqBDs6l%2FyL%2BMflBR6aaxFPa%2BdNMitjfM%3D"},
+]};
+
+        function initMap() {
+            
+            var l1Array = [];
+            var l2Array = [];
+            var l3Array = [];
+
+            function createMarker(item) {
+                const markerPosition = L.latLng(item.lat, item.lng);
+                
+                var circleColor = 'blue';
+                var layerArray = l3Array;
+                switch (item.type) {
+                    case 'Wiedehopf':
+                        circleColor = 'MediumVioletRed'
+                        layerArray = l1Array;
+                        break;    
+                    case 'Steinkautz':
+                        circleColor = 'orange'
+                        layerArray = l2Array;
+                        break;                        
+                    default: // Regular
+                        circleColor = 'blue'
+                        layerArray = l3Array;
+                }
+
+                var marker = L.circleMarker(markerPosition, {
+                    color: circleColor,
+                    fillColor: circleColor,
+                    fillOpacity: 0.5,
+                    radius: 3
+                })
+                //.addTo(map);
+
+                //var marker = L.marker(markerPosition, { title: item.marker });
+                //marker.addTo(map);
+                
+                var tooltip = item.marker;
+
+                if( item.img != "" ) {
+                    var popupContent =
+                    '<div>' +
+                    '<p style="font-weight:bold;">' + item.marker + '<p>' +
+                    '<div align="center">' +
+                    '<img src="'+item.img+'" alt="Nistkastenfoto" width="200px" />' +
+                    '</div>' +
+                    '</div>';
+                    marker.bindPopup(popupContent);
+                } else {
+                    tooltip = tooltip + " (kein Foto vorhanden)"
+                }
+
+                marker.bindTooltip(tooltip).openTooltip();
+
+                layerArray.push(marker);
+            }
+
+            for(var i in repository.repos) {
+                createMarker( repository.repos[i] )
+            }
+
+            var element = document.getElementById('overviewMap');
+
+            // Create Leaflet map on map element
+            var map = L.map(element);
+
+            // Add OSM tile layer to the Leaflet map
+            var baseMap = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Target's GPS coordinates.
+            //var target = L.latLng(49.566656852866224, 8.251257578232108);
+            var target = L.latLng(49.571588, 8.248157);
+
+            // Set map's center to target with zoom 15.
+            map.setView(target, 15);          
+
+            var layerGroup1 = L.layerGroup(l1Array).addTo(map);
+            var layerGroup2 = L.layerGroup(l2Array).addTo(map);
+            var layerGroup3 = L.layerGroup(l3Array).addTo(map);
+
+            var baseMapLayer = {
+                "OpenStreetMap": baseMap
+            };
+
+            var markerOverlay = {
+                "<span style='color:MediumVioletRed;font-weight:bold;'>Wiedehopf<span>": layerGroup1,
+                "<span style='color:Orange;font-weight:bold;'>Steinkautz<span>": layerGroup2,
+                "<span style='color:Blue;font-weight:bold;'>Sonstige<span>": layerGroup3
+            }
+            
+            L.control.layers(baseMapLayer, markerOverlay).addTo(map);
+            
+        }
+
+        initMap()
+    </script>
+
+</body>
+</html>
